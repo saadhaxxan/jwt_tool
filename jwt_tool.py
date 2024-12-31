@@ -1676,7 +1676,7 @@ def preScan():
     if config['argvals']['canaryvalue']:
         if config['argvals']['canaryvalue'] not in config['argvals']['rescontent']:
             cprintc("Canary value ("+config['argvals']['canaryvalue']+") was not found in base request - check that this token is valid and you are still logged in", "red")
-            shallWeGoOn = input("Do you wish to continue anyway? (\"Y\" or \"N\")")
+            shallWeGoOn = "Y"
             if shallWeGoOn == "N":
                 exit(1)
             elif shallWeGoOn == "n":
@@ -1920,12 +1920,12 @@ if __name__ == '__main__':
             method, first_line_remainder = first_line.split(' ', 1)
             url = first_line_remainder.split(' ', 1)[0]
             base_url = ''
-        
+
             in_headers = True
             args.postdata = ''
 
             for line in file:
-                
+
                 line = line.strip()
                 if not line:
                     # Stop when reaching an empty line (end of headers)
@@ -1937,14 +1937,14 @@ if __name__ == '__main__':
                         # Extract the host from the 'Host' header
                         _, host = line.split(':', 1)
                         host = host.strip()
-                        
+
                         if ':' in host:
                             host, port = host.split(':', 1)
 
                         protocol = "http" if args.insecure else "https"
 
                         base_url = f"{protocol}://{host}"
-                        
+
                     elif line.lower().startswith('cookie:'):
                         cookie = line.split(': ')[1]
                         if not args.cookies:
@@ -2017,7 +2017,7 @@ if __name__ == '__main__':
                 str(args.headers),
                 str(args.postdata)
             ])
-            
+
             try:
                 findJWT = re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', searchString)[0]
             except:
