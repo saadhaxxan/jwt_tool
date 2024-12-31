@@ -107,7 +107,7 @@ def createConfig():
         'jwksloc': '',
         'jwksdynamic': 'https://httpbin.org/base64/'+jwks_b64.decode(),
         '# Set this to the base URL of a Collaborator server, somewhere you can read live logs, a Request Bin etc.': None, 'httplistener': ''}
-    config['input'] = {'wordlist': 'jwt-common.txt',
+    config['input'] = {'wordlist': '/opt/jwt_tool/jwt-common.txt',
         'commonHeaders': 'common-headers.txt',
         'commonPayloads': 'common-payloads.txt'}
     config['argvals'] = {'# Set at runtime - changes here are ignored': None,
